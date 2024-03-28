@@ -21,6 +21,8 @@ public class Aula03 {
             e.printStackTrace();
         }
         
+
+         /**Com o Bollean não precisa de try and catch */
         Vetor v3 = new Vetor(2);
         v3.adicionaComBoolean("Carro");
         v3.adicionaComBoolean("onibus");
