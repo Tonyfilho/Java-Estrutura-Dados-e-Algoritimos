@@ -105,4 +105,69 @@ public class Vetor {
         return this.elementos[posicao];
     }
 
+    /**************************** Aula 06 verificar se o elemento existe */
+    /**
+     * Observacao podemos usar um metodo Boolean ou Int
+     * Caso ache ele retorna true
+     */
+
+    public Boolean existeElementoBoolean(String elemento) {
+        for (int i = 0; i < this.tamanho; i++) {
+            /**
+             * Obs: Como String no Java é um Objeto não se pode usar == para fazer
+             * comparações e sim o equalsIgnoreCase ou equals
+             */
+            if (this.elementos[i].equals(elemento)) {
+                return true;
+            }
+
+        }
+        return false;
+    }
+
+    /** O mesmo metodo retornando a POSIÇÃO */
+    public int existeElementoInt(String elemento) {
+        for (int i = 0; i < this.tamanho; i++) {
+            /**
+             * Obs: Como String no Java é um Objeto não se pode usar == para fazer
+             * comparações e sim o equalsIgnoreCase ou equals
+             */
+            if (this.elementos[i].equalsIgnoreCase(elemento)) {
+                return i;
+            }
+
+        }
+        return -1;
+    }
+
+    /****************************
+     * Aula 07 Adicionar novo elemento em uma posição sem remover o existente
+     */
+    /**
+     * 1º Passo é ver se a posição existe
+     * 2º Criar um FOR que irá inicialiar com o tamanho -1 >= posicao
+     * 3º Obs: o i = tamanho -1, para sempre salvar a posição anterior, ou seja
+     * quando tamanho for 5 (-1), virará Index 4 e salvará o index 5 anterior
+     * 4º Decrementar, pois iremos Iterar de traz para Frente
+     * 5º Mover os elemento para uma posição para frente
+     * 6º Salvar o novo elemento
+     * 7º Incrementar o tamanho
+     */
+    public Boolean adicionaSemRemoverOExistente(int posicao, String elemento) {
+        if (!(posicao >= 0 && posicao < this.tamanho)) {
+            throw new IllegalArgumentException("Posiçao invalida");
+        }
+        //mover todos os elementos para frente
+        for (int i = this.tamanho - 1; i >= posicao; i--) {
+            this.elementos[i + 1] = this.elementos[i]; // Vetor 4+1(5), irá receber a Posição 4
+        }
+        //salvar posicao
+        this.elementos[posicao] = elemento;
+        //Incrementar o tamanho
+        this.tamanho++;
+    
+
+        return true;
+    }
+
 }
