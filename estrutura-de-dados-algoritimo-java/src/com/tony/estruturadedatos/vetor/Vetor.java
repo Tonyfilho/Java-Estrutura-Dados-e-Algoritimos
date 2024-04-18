@@ -13,21 +13,21 @@ public class Vetor {
 
     /** esta gera uma erro por falta de controle de tamanho */
     public void adicionaSemControleDeTamanho(String elemento) {
-      //  this.aumentaCapacidade(); se por não gera error, fui comentado por isto
-      for (int i = 0; i < this.elementos.length; i++) {
-          
-          if (this.elementos[i] == null) {
-              this.elementos[i] = elemento;
-              break;
+        // this.aumentaCapacidade(); se por não gera error, fui comentado por isto
+        for (int i = 0; i < this.elementos.length; i++) {
+
+            if (this.elementos[i] == null) {
+                this.elementos[i] = elemento;
+                break;
             }
             System.out.println("Itens sem controle de tamanho: " + elementos[i]);
         }
-        
+
     }
-    
+
     /** esta é protegido do erro por causa do Try and Catch */
     public void adicionaComControleDeTamanho(String elemento) throws Exception {
-        //  this.aumentaCapacidade(); se por não gera error, fui comentado por isto
+        // this.aumentaCapacidade(); se por não gera error, fui comentado por isto
         if (this.tamanho < this.elementos.length) {
             elementos[this.tamanho] = elemento;
             tamanho++;
@@ -178,21 +178,54 @@ public class Vetor {
      * fazer isto é Criar um NOVO ARRAY.
      */
 
-     /**
-      * 1º Cria um novo Array Filho q receberá os valores com o tamanho 2 * o tamanho do array Pai, 
-      * 2ª Iterar o array existente 
-      * 3º Atribuir os valor na sua posições, começando pelo 0 para o novo array
-      * 4º Atribuir novamente os valores para o Array 
-      * 5º Por a invocação do Metodo nos locais onde se precisa fazer o Update do Array Pai. nos Metodos de Adcionar Elementos
-      */
-      private void aumentaCapacidade() {
+    /**
+     * 1º Cria um novo Array Filho q receberá os valores com o tamanho 2 * o tamanho
+     * do array Pai,
+     * 2ª Iterar o array existente
+     * 3º Atribuir os valor na sua posições, começando pelo 0 para o novo array
+     * 4º Atribuir novamente os valores para o Array
+     * 5º Por a invocação do Metodo nos locais onde se precisa fazer o Update do
+     * Array Pai. nos Metodos de Adcionar Elementos
+     */
+    private void aumentaCapacidade() {
         if (this.elementos.length == this.tamanho) {
-           String [] elementosNovos = new String[this.elementos.length * 2] ;
-           for (int i = 0; i < elementos.length; i++) {
-                  elementosNovos[i] = this.elementos[i];
-           }
-           this.elementos = elementosNovos;
+            String[] elementosNovos = new String[this.elementos.length * 2];
+            for (int i = 0; i < elementos.length; i++) {
+                elementosNovos[i] = this.elementos[i];
+            }
+            this.elementos = elementosNovos;
         }
-      }
+    }
+
+    /****************************
+     * Aula 09 Elemento do Array
+     */
+    /**
+     * B G D E F -> Posição para ser Removida neste ex. é a 1, elemento " G ";
+     * 0 1 2 3 4 -> Tamanho é 5;
+     * O Elemento da posicão [1] irá receber o Elemento da posicão [2], use ex:
+     * simples tipo este de apenas 5 elementos, pois se funciona com 5, funciona com
+     * 1000;
+     * Ex: vetor[1] = vetor[2];
+     * Ex: vetor[2] = vetor[3];
+     * Ex: vetor[3] = vetor[4];
+     * Cria o FOR e Começaremos:
+     * 1º com a Var da Posição q representa quem vai ser removido
+     * 2º Interaremos até o Tamanho do Array -1;
+     * 3ª fazer as atribuições, Ex: vetor[1] = vetor[2]; vetor[2] = vetor[3];
+     * vetor[3] = vetor[4];
+     * 4º dimminuir o tamanho depois do for
+     * 
+     * @param posicao
+     */
+    public void remove(int posicao) {
+        if (!(posicao >= 0 && posicao < this.tamanho)) {
+            throw new IllegalArgumentException("Posiçao invalida");
+        }
+        for (int index = posicao; index < this.tamanho - 1; index++) {
+            this.elementos[index] = this.elementos[index + 1];
+        }
+        this.tamanho--;
+    }
 
 }
