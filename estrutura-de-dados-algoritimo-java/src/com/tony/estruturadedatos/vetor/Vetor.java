@@ -13,19 +13,21 @@ public class Vetor {
 
     /** esta gera uma erro por falta de controle de tamanho */
     public void adicionaSemControleDeTamanho(String elemento) {
-        for (int i = 0; i < this.elementos.length; i++) {
-
-            if (this.elementos[i] == null) {
-                this.elementos[i] = elemento;
-                break;
+      //  this.aumentaCapacidade(); se por não gera error, fui comentado por isto
+      for (int i = 0; i < this.elementos.length; i++) {
+          
+          if (this.elementos[i] == null) {
+              this.elementos[i] = elemento;
+              break;
             }
             System.out.println("Itens sem controle de tamanho: " + elementos[i]);
         }
-
+        
     }
-
+    
     /** esta é protegido do erro por causa do Try and Catch */
     public void adicionaComControleDeTamanho(String elemento) throws Exception {
+        //  this.aumentaCapacidade(); se por não gera error, fui comentado por isto
         if (this.tamanho < this.elementos.length) {
             elementos[this.tamanho] = elemento;
             tamanho++;
@@ -48,6 +50,7 @@ public class Vetor {
      * vetores/arrays
      */
     public Boolean adicionaComBoolean(String elemento) {
+        this.aumentaCapacidade();
         if (this.tamanho < this.elementos.length) {
             elementos[this.tamanho] = elemento;
             tamanho++;
@@ -157,17 +160,39 @@ public class Vetor {
         if (!(posicao >= 0 && posicao < this.tamanho)) {
             throw new IllegalArgumentException("Posiçao invalida");
         }
-        //mover todos os elementos para frente
+        this.aumentaCapacidade();
+        // mover todos os elementos para frente
         for (int i = this.tamanho - 1; i >= posicao; i--) {
             this.elementos[i + 1] = this.elementos[i]; // Vetor 4+1(5), irá receber a Posição 4
         }
-        //salvar posicao
+        // salvar posicao
         this.elementos[posicao] = elemento;
-        //Incrementar o tamanho
+        // Incrementar o tamanho
         this.tamanho++;
-    
 
         return true;
     }
+
+    /****************************
+     * Aula 08 Aumentar a capacidade no Java no C e no C# e outros a UNICA forma de
+     * fazer isto é Criar um NOVO ARRAY.
+     */
+
+     /**
+      * 1º Cria um novo Array Filho q receberá os valores com o tamanho 2 * o tamanho do array Pai, 
+      * 2ª Iterar o array existente 
+      * 3º Atribuir os valor na sua posições, começando pelo 0 para o novo array
+      * 4º Atribuir novamente os valores para o Array 
+      * 5º Por a invocação do Metodo nos locais onde se precisa fazer o Update do Array Pai. nos Metodos de Adcionar Elementos
+      */
+      private void aumentaCapacidade() {
+        if (this.elementos.length == this.tamanho) {
+           String [] elementosNovos = new String[this.elementos.length * 2] ;
+           for (int i = 0; i < elementos.length; i++) {
+                  elementosNovos[i] = this.elementos[i];
+           }
+           this.elementos = elementosNovos;
+        }
+      }
 
 }
