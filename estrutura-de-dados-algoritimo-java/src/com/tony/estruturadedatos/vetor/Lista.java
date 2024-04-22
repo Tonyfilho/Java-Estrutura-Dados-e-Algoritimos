@@ -28,8 +28,8 @@ public class Lista<T> {
     private T[] elementos;
     private int tamanho;
 
-    public Lista(int elementos) {      
-        this.elementos =  (T[]) new Object[elementos]; /**Esta é a Solução do Livre Effective Java, que esta no Diretorio assets\eBook-Effective-java */
+    public Lista(int elemento) {      
+        this.elementos =  (T[]) new Object[elemento]; /**Esta é a Solução do Livre Effective Java, que esta no Diretorio assets\eBook-Effective-java */
         this.tamanho = 0;
     }
 
