@@ -6,7 +6,7 @@ import com.tony.estruturadedatos.vetor.Lista;
  * Aula do Generics e a forma correta de não ter arrays do tipo ANY, tem q ser
  * do mesmo tipo no JAVA, diferentemente do JS
  */
-@SuppressWarnings("rawtypes")
+
 public class Aula11 {
 
     public static void main(String[] args) {
