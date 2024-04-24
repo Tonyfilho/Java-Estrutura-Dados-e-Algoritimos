@@ -13,8 +13,8 @@ public class Exerc01 {
         localArray.add("C");
 
 
-       System.out.println(localArray.containsBoolean("D"));
-       System.out.println(localArray.containsInt("C"));
+       System.out.println(localArray.containsB("D"));
+       System.out.println(localArray.containsI("C"));
 
     }
 

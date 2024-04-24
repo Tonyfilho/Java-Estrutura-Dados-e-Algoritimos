@@ -14,8 +14,8 @@ public class Exerc02 {
         exerciciosFeitos.add(1);
 
 
-        System.out.println("Array: "+ exerciciosFeitos + " O Ultimo Index é: " + exerciciosFeitos.lastIndexOfLocal(1));
-        System.out.println("Array inverso: "+ exerciciosFeitos + " O Ultimo Index é : " + exerciciosFeitos.lastIndexOfLocalInverso(1));
+        System.out.println("Array: "+ exerciciosFeitos + " O Ultimo Index é: " + exerciciosFeitos.lastIndexOfLocalErrado(1));
+        System.out.println("Array inverso: "+ exerciciosFeitos + " O Ultimo Index é : " + exerciciosFeitos.lastIndexOfLocal(1));
 
 
     }

@@ -41,9 +41,9 @@ public class ExerciciosFeitos<T> {
     }
 
     public boolean add(T elemento) {
-        
+
         this.aumentaCapacidade();
-       
+
         if (this.tamanho < this.localArray.length) {
             this.localArray[tamanho] = elemento;
             tamanho++;
@@ -54,13 +54,34 @@ public class ExerciciosFeitos<T> {
     }
 
     /**
+     * OverLoad o metodo para tremos a opção de adcionar em uma determinada Posição
+     * do Array sem remover e relocar a informação
+     */
+    public Boolean add(int posicao, T elemento) {
+        if (!(posicao >= 0 && posicao < this.tamanho)) {
+            throw new IllegalArgumentException("Posiçao invalida");
+        }
+        this.aumentaCapacidade();
+        // mover todos os elementos para frente
+        for (int i = this.tamanho - 1; i >= posicao; i--) {
+            this.localArray[i + 1] = this.localArray[i]; // Vetor 4+1(5), irá receber a Posição 4
+        }
+        // salvar posicao
+        this.localArray[posicao] = elemento;
+        // Incrementar o tamanho
+        this.tamanho++;
+
+        return true;
+    }
+
+    /**
      * 01 Exercicio é criar um metodo que mostra um conteudo no Array, sem usar a
      * classe Array list
      * 
      */
 
     /*********** Confirma e retorna um Boolean***** */
-    public boolean containsBoolean(T elemento) {
+    public boolean containsB(T elemento) {
         if (this.localArray.equals(elemento)) {
             System.out.println("Yes We have");
             return true;
@@ -71,7 +92,7 @@ public class ExerciciosFeitos<T> {
     }
 
     /*********** Confirma e retorna um Int q é o Index do Elemento***** */
-    public int containsInt(T elemento) {
+    public int containsI(T elemento) {
         for (int index = 0; index < localArray.length; index++) {
             if (this.localArray[index].equals(elemento)) {
                 System.out.println("Yes We have");
@@ -103,7 +124,7 @@ public class ExerciciosFeitos<T> {
     }
 
     // 1,2,3,1
-    public int lastIndexOfLocal(T elemento) {
+    public int lastIndexOfLocalErrado(T elemento) {
         int lastIndex = -1;
         for (int i = 0; i < tamanho; i++) {
             if (localArray[i].equals(elemento)) {
@@ -120,14 +141,12 @@ public class ExerciciosFeitos<T> {
      * desempenho
      * Obs: Temos q por tamanho -1, para n dar erro
      */
-    public int lastIndexOfLocalInverso(T elemento) {
+    public int lastIndexOfLocal(T elemento) {
         int lastIndex = -1;
         for (int i = tamanho - 1; i >= 0; i--) {
             if (localArray[i].equals(elemento)) {
                 return i;
-
             }
-
         }
         return lastIndex;
     }
@@ -156,6 +175,19 @@ public class ExerciciosFeitos<T> {
         tamanho--;
         return removed;
     }
+    /**Metodo Remove Overload passando um index, mas o 1ª ja faz isto tb, pois alem do Elemento, pode tb passar o Index */
+    public T removeLocal(int index) {        
+        T removed = this.localArray[index];
+        if (!(index >= 0 && index < this.tamanho)) {
+            throw new IllegalArgumentException("Posiçao invalida");
+        }
+        for (int i = index; i < this.tamanho - 1; i++) {
+            this.localArray[i] = this.localArray[i + 1];
+
+        }
+        tamanho--;
+        return removed;
+    }
 
     /**
      * 04 Exercicio é criar um metodo Get ou seja Obtem onde pessaremos uma posição
@@ -174,23 +206,23 @@ public class ExerciciosFeitos<T> {
      * Clear do ArrayList()
      */
 
-     public void clearLocal() {
-         this.localArray = (T[]) new Object[this.localArray.length];
-         tamanho = 0;
-     }
-     
-     /**Outra opção  é zera a variavel tamanho */
-     
-     public void clearLocal2() {
+    public void clearLocal() {
+        this.localArray = (T[]) new Object[this.localArray.length];
+        tamanho = 0;
+    }
+
+    /** Outra opção é zera a variavel tamanho */
+
+    public void clearLocal2() {
         this.tamanho = 0;
-     }
-     /**Outra opção  é é itera o Array e por tudo null*/
-     
-     public void clearLocal3() {
+    }
+
+    /** Outra opção é é itera o Array e por tudo null */
+
+    public void clearLocal3() {
         for (int i = 0; i > this.localArray.length; i++) {
             this.localArray[i] = null;
         }
         tamanho = 0;
-     }
+    }
 }
-
