@@ -225,4 +225,8 @@ public class ExerciciosFeitos<T> {
         }
         tamanho = 0;
     }
+
+    public int localLength() {
+      return this.localArray.length;
+    }
 }

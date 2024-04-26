@@ -19,7 +19,7 @@ public class Exerc06 {
         Scanner scan = new Scanner(System.in);
 
         /** Criar Vetor com 20 Capacidade */
-        ExerciciosFeitos<Contatos> lista = new ExerciciosFeitos<Contatos>(20);
+        ExerciciosFeitos<Contatos> lista = new ExerciciosFeitos<Contatos>(4);
 
         /** Criar e adcionar dinamicamente */
         CriarContatosDinamicamente(5, lista);
@@ -115,11 +115,11 @@ public class Exerc06 {
                 break;
             case 2:
                 ArrayList<Object> localList = AdcionaContatoPorPosicao();
-                lista.add(((int)localList.get(0)), ((Contatos)localList.get(1)));
+                lista.add(((int) localList.get(0)), ((Contatos) localList.get(1)));
 
                 break;
             case 3:
-
+                buscaElemento(lista);
                 break;
             case 4:
 
@@ -205,11 +205,11 @@ public class Exerc06 {
         return new Contatos(nome, nunTelefone, email);
     }
 
+    /** Metodo Adciona por posição, onde retornamos um Arralist de Objetos */
     private static ArrayList<Object> AdcionaContatoPorPosicao() {
         ArrayList<Object> locaList = new ArrayList<Object>();
         Contatos localContatos = new Contatos();
         int lPosicao = 0;
-        
 
         System.out.println("************Digite o Nome do contato**************");
         localContatos.setNome(LerInformacaoDigitadaString("Nome: "));
@@ -229,6 +229,16 @@ public class Exerc06 {
         locaList.add(localContatos);
 
         return locaList;
+    }
+
+    private static void buscaElemento(ExerciciosFeitos<Contatos> lista) {
+        int index = 0;
+        // Contatos localContatos = new Contatos();
+        System.out.println("************Digite o Index do Elemento a  Ser Retornado**************");
+        System.out.println("************Escolha do Elemento pelo seu Index: \n\n" + lista);
+        index = LerInformacaoDigitadaInt("Digite a Posicao de Busca do Array de 0 até: " + (lista.localLength() -1) );
+        System.out.println("O Elemento do Array é : " + lista.getLocal(index));
+
     }
 
 }
