@@ -1,5 +1,6 @@
 package com.tony.estruturadedatos.vetor.labs;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import com.tony.estruturadedatos.vetor.Contatos;
@@ -21,15 +22,15 @@ public class Exerc06 {
         ExerciciosFeitos<Contatos> lista = new ExerciciosFeitos<Contatos>(20);
 
         /** Criar e adcionar dinamicamente */
-         CriarContatosDinamicamente(5, lista);
+        CriarContatosDinamicamente(5, lista);
 
         /** Obter o Numero do Menu */
         int opcao = 1;
 
         while (opcao != 0) {
             opcao = Menu(scan);
-             CallProgram(opcao, lista);
-          
+            CallProgram(opcao, lista);
+
         }
         System.out.println("******Quit********");
         System.out.println("You Hit:  0 The Program finish!");
@@ -85,9 +86,9 @@ public class Exerc06 {
                 entrace = scan.nextLine();
                 option = Integer.parseInt(entrace);
                 /** Temos q validar se esta sendo digitado de 0 a 10 */
-                if (option >= 0 && option < 11) {   
-                    /*************Ficando no Menu********** */            
-                      getIn = true;               
+                if (option >= 0 && option < 11) {
+                    /************* Ficando no Menu********** */
+                    getIn = true;
 
                 } else {
                     /**
@@ -103,70 +104,131 @@ public class Exerc06 {
         }
         return option;
     }
+
     public static int CallProgram(int option, ExerciciosFeitos<Contatos> lista) {
-        Contatos contatos = new Contatos();
-        int localOpcao = 0;
-        
+
         System.out.println("Options: " + option);
         switch (option) {
             case 1:
-            contatos.setNome("jose Orelha");
-            contatos.setEmail("jose Orelha@gmail.com");
-            contatos.setTelefone(12345678);
-                    lista.add(contatos);
-                    System.out.println("Contata Adicionado com Sucesso: " + lista);
-             localOpcao = 1;
-             break;
-             case 2:
-            
-           lista.add(option, contatos);
-            
-            break;
+                lista.add(AdcionaContato());
+
+                break;
+            case 2:
+                ArrayList<Object> localList = AdcionaContatoPorPosicao();
+                lista.add(((int)localList.get(0)), ((Contatos)localList.get(1)));
+
+                break;
             case 3:
-            
-            break;
+
+                break;
             case 4:
-            
-            break;
+
+                break;
             case 5:
 
-            break;
+                break;
             case 6:
-            
-            break;
+
+                break;
             case 7:
-            
-            break;
+
+                break;
             case 8:
-            
-            break;
+
+                break;
             case 9:
 
-            break;
+                break;
             case 10:
-            
-            break;
-            
-          
-            
-            
+
+                break;
+
         }
-        return localOpcao;
+        return option;
     }
 
-    /**Para cada Opção craaremos um metodo, alem é claro de cria uma metodo de entrada */
+    /**
+     * Para cada Opção craaremos um metodo, alem é claro de cria uma metodo de
+     * entrada
+     */
 
-    /**Metodo de Entrada de dados */
-    private  String lerInformacaoDigitada(String info, Scanner scan) {
-      String infoDigitada;
-         System.out.println("Digite a Informçao Solicitada: "+ info);
-         infoDigitada =  scan.nextLine();
+    /** Metodo de Entrada de dados */
+    @SuppressWarnings("resource")
+    private static String LerInformacaoDigitadaString(String info) {
+        Scanner localScanner = new Scanner(System.in);
+        String infoDigitada;
+        System.out.println("Digite a Informaçao Solicitada: " + info);
+        infoDigitada = localScanner.nextLine();
 
-
-      return infoDigitada;
+        return infoDigitada;
     }
 
-    /**Metodo do Menu 1 Add() no final */
-    
+    /** Metodo que protege para */
+    @SuppressWarnings("resource")
+    private static int LerInformacaoDigitadaInt(String info) {
+        Scanner localScanner = new Scanner(System.in);
+        int infoDigitada = 0;
+        System.out.println("Digite a Informaçao Solicitada: " + info);
+
+        /** Proteção caso Digite Letras */
+        try {
+            infoDigitada = Integer.parseInt(localScanner.nextLine());
+
+        } catch (Exception e) {
+            System.out.println("Invalid Entrace. Must be Number. Try Again \n\n");
+        }
+
+        return infoDigitada;
+    }
+
+    /** Metodo do Menu 1 Add() no final */
+
+    private static Contatos AdcionaContato() {
+        int nunTelefone = 0;
+        String nome;
+        String email;
+        System.out.println("************Digite o Nome do contato**************");
+        nome = LerInformacaoDigitadaString("Nome: ");
+
+        System.out.println("************Digite o Telefone em Numeros do contato**************");
+        /** Proteção caso Digite Letras */
+        try {
+            nunTelefone = Integer.parseInt(LerInformacaoDigitadaString("Telefone: "));
+
+        } catch (Exception e) {
+            System.out.println("Invalid Entrace. Must be Number 0 Until 10. Try Again \n\n");
+        }
+
+        System.out.println("************Digite o Email do contato**************");
+        email = LerInformacaoDigitadaString("email: ");
+
+        return new Contatos(nome, nunTelefone, email);
+    }
+
+    private static ArrayList<Object> AdcionaContatoPorPosicao() {
+        ArrayList<Object> locaList = new ArrayList<Object>();
+        Contatos localContatos = new Contatos();
+        int lPosicao = 0;
+        
+
+        System.out.println("************Digite o Nome do contato**************");
+        localContatos.setNome(LerInformacaoDigitadaString("Nome: "));
+
+        System.out.println("************Digite o Telefone em Numeros do contato**************");
+        localContatos.setTelefone(LerInformacaoDigitadaInt("Telefone: "));
+
+        System.out.println("************Digite o Email do contato**************");
+        // email = LerInformacaoDigitadaString("email: ");
+        // locaList.add(email);
+        localContatos.setEmail(LerInformacaoDigitadaString("email: "));
+
+        System.out.println("************Digite a Posição do Array  em Numero**************");
+
+        lPosicao = LerInformacaoDigitadaInt("Posicao Do Array: ");
+        locaList.add(lPosicao);
+        locaList.add(localContatos);
+
+        return locaList;
+    }
 
 }
