@@ -119,10 +119,10 @@ public class Exerc06 {
 
                 break;
             case 3:
-                buscaElemento(lista);
+                BuscaElemento(lista);
                 break;
             case 4:
-
+                ContainsInt(lista);
                 break;
             case 5:
 
@@ -181,7 +181,9 @@ public class Exerc06 {
         return infoDigitada;
     }
 
-    /** Metodo do Menu 1 Add() no final */
+    /***************************************************
+     * 01*********************************** Metodo do Menu 1 Add() no final
+     */
 
     private static Contatos AdcionaContato() {
         int nunTelefone = 0;
@@ -205,7 +207,10 @@ public class Exerc06 {
         return new Contatos(nome, nunTelefone, email);
     }
 
-    /** Metodo Adciona por posição, onde retornamos um Arralist de Objetos */
+    /*************************************
+     * 02***************** Metodo Adciona por posição, onde retornamos um Arralist
+     * de Objetos
+     */
     private static ArrayList<Object> AdcionaContatoPorPosicao() {
         ArrayList<Object> locaList = new ArrayList<Object>();
         Contatos localContatos = new Contatos();
@@ -231,14 +236,31 @@ public class Exerc06 {
         return locaList;
     }
 
-    private static void buscaElemento(ExerciciosFeitos<Contatos> lista) {
+    /***********************************************
+     * 03**********Metodo Get pata buscar uma determinado Elemento do
+     * Array****************************
+     */
+    private static void BuscaElemento(ExerciciosFeitos<Contatos> lista) {
         int index = 0;
         // Contatos localContatos = new Contatos();
         System.out.println("************Digite o Index do Elemento a  Ser Retornado**************");
         System.out.println("************Escolha do Elemento pelo seu Index: \n\n" + lista);
-        index = LerInformacaoDigitadaInt("Digite a Posicao de Busca do Array de 0 até: " + (lista.localLength() -1) );
+        index = LerInformacaoDigitadaInt("Digite a Posicao de Busca do Array de 0 até: " + (lista.localLength() - 1));
         System.out.println("O Elemento do Array é : " + lista.getLocal(index));
 
     }
 
+    /****************************************
+     * 04*********pass Especific Element Return Int, se for -1 quer dizer q não
+     * existe, ser for outro numero é ao Index do
+     * Array********************************************************
+     */
+
+    private static void ContainsInt(ExerciciosFeitos<Contatos> lista) {
+        System.out.println("************Digite o Elemento a  Ser Pesquisado**************");
+        System.out.println("************Escolha do Elemento pelo seu Nome: \n\n" + lista);
+        String itemDigitado = LerInformacaoDigitadaString("Digite o Contato");
+        System.out.println("Nosso Item contendo no Array: " + itemDigitado);
+
+    }
 }
