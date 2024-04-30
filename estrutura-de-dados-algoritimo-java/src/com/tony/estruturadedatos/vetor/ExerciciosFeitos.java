@@ -1,5 +1,8 @@
 package com.tony.estruturadedatos.vetor;
 
+import java.util.ArrayList;
+import java.util.stream.Collectors;
+
 @SuppressWarnings("unchecked")
 public class ExerciciosFeitos<T> {
 
@@ -81,25 +84,25 @@ public class ExerciciosFeitos<T> {
      */
 
     /*********** Confirma e retorna um Boolean***** */
-    public boolean containsB(T elemento) {
+    public boolean BuscaB(T elemento) {
         if (this.localArray.equals(elemento)) {
-            System.out.println("Yes We have");
+            System.out.println("Yes We Have Because the Return is : ");
             return true;
         }
 
-        System.out.println("Nope We dont have");
+        System.out.println("Nope We Dont Have: ");
         return false;
     }
 
     /*********** Confirma e retorna um Int q é o Index do Elemento***** */
-    public int containsI(T elemento) {
+    public int BuscaI(T elemento) {
         for (int index = 0; index < localArray.length; index++) {
             if (this.localArray[index].equals(elemento)) {
-                System.out.println("Yes We have");
+                System.out.println("Yes We Have The Index nº: " + index);
                 return index;
             }
         }
-        System.out.println("Nope We dont have");
+        System.out.println("Nope We Dont Have: ");
         return -1;
     }
 
@@ -175,8 +178,12 @@ public class ExerciciosFeitos<T> {
         tamanho--;
         return removed;
     }
-    /**Metodo Remove Overload passando um index, mas o 1ª ja faz isto tb, pois alem do Elemento, pode tb passar o Index */
-    public T removeLocal(int index) {        
+
+    /**
+     * Metodo Remove Overload passando um index, mas o 1ª ja faz isto tb, pois alem
+     * do Elemento, pode tb passar o Index
+     */
+    public T removeLocal(int index) {
         T removed = this.localArray[index];
         if (!(index >= 0 && index < this.tamanho)) {
             throw new IllegalArgumentException("Posiçao invalida");
@@ -227,6 +234,74 @@ public class ExerciciosFeitos<T> {
     }
 
     public int localLength() {
-      return this.localArray.length;
+        return this.localArray.length;
+    }
+
+    /************** Exercicio 06_Busca por Objeto******************** */
+    public boolean BuscaObjectosContatosBoolen(Contatos contato) {
+    
+
+        ArrayList<Contatos> localList = new ArrayList<Contatos>(localArray.length);
+        /** Transformando a Matrix de contato em uma Lista de contato */
+        for (int i = 0; i < localArray.length; i++) {
+            localList.add((Contatos) localArray[i]);           
+        }
+        /**
+         * /º tem q filtrar para buscar o nome e depois mapear , n pode mapear 1º,
+         * diferente do JS
+         */
+        boolean local = localList.stream().filter(d -> d.getNome().contains(contato.getNome()))
+                .map(e -> e.getNome()).collect(Collectors.toList()).contains(contato.getNome());
+
+        return local;
+
+    }
+
+    public int BuscaObjectosContatosInt(Contatos contato) {
+        int index = -1;
+
+        ArrayList<Contatos> localList = new ArrayList<Contatos>(localArray.length);
+        /** Transformando a Matrix de contato em uma Lista de contato */
+        for (int i = 0; i < localArray.length; i++) {
+            localList.add((Contatos) localArray[i]);
+            if (localList.get(i).getNome().contains(contato.getNome())) {
+                return index = i;
+            }
+
+        }
+
+        return index;
+    }
+
+    public String getName() {
+        StringBuilder nome = new StringBuilder();
+        for (Object itens :  localArray) {
+            nome.append(((Contatos) itens).getNome()).append(", ");
+        }
+        return nome.toString();
+    }
+
+    
+    public int BuscaObjectosContatoIndexOf(Contatos localContato) {
+        int index = -1;
+        for (int i = 0; i < localArray.length; i ++) {
+           // System.out.println("GETNOME()"+((Contatos)localArray[i]).getNome());
+           if (((Contatos)localArray[i]).getNome().contains(localContato.getNome())) {
+               return  index = i;
+           } 
+        }
+
+        return index;
+    }
+    public int BuscaObjectosContatoLastIndexOf(Contatos localContato) {
+        int index = -1;       
+        for (int i = localArray.length -1; i >= 0; i --) {
+           // System.out.println("GETNOME()"+((Contatos)localArray[i]).getNome());
+           if (((Contatos)localArray[i]).getNome().equals(localContato.getNome())) {
+               return  index = i;
+           } 
+        }
+
+        return index;
     }
 }

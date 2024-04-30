@@ -67,8 +67,8 @@ public class Exerc06 {
             System.out.println("1: Add() Contact at the End.");
             System.out.println("2: Add() Contact With Especific Position.");
             System.out.println("3: Get() Contact pass the  Position Return Element.");
-            System.out.println("4: Contains() pass Especific Element Return Int.");
-            System.out.println("5: Contains(2) pass Especific Element Return Boolean.");
+            System.out.println("4: Contain() Object pass Especific Element  Return Boolean.");
+            System.out.println("5: Contain2() pass Especific Element in this Case the Name and Return Int");
             System.out.println("6: IndexOf() pass Especific Element Return Primeiro Index(int) do Elemento Buscado.");
             System.out.println("7: LastIndexOf() pass Especific Element Return Ultimo Index do Elemento Buscado.");
             System.out.println("8: Remove() pass Especific Position Return Removed Item.");
@@ -122,16 +122,16 @@ public class Exerc06 {
                 BuscaElemento(lista);
                 break;
             case 4:
-                ContainsInt(lista);
+                ContainsElementoBoolen(lista);
                 break;
             case 5:
-
+                ContainsElementoInt(lista);
                 break;
             case 6:
-
+                IndexOfElemento(lista);
                 break;
             case 7:
-
+                LastIndexOfElemento(lista);
                 break;
             case 8:
 
@@ -251,16 +251,71 @@ public class Exerc06 {
     }
 
     /****************************************
-     * 04*********pass Especific Element Return Int, se for -1 quer dizer q não
+     * 04*********pass Especific Element Return Boolean ************
+     */
+
+    private static void ContainsElementoBoolen(ExerciciosFeitos<Contatos> lista) {
+        Contatos localContato = new Contatos();
+        System.out.println("************Digite o Elemento a  Ser Pesquisado**************");
+        System.out.println("************Escolha do Elemento pelo seu Nome: \n\n" + lista.getName());
+        String itemDigitado = LerInformacaoDigitadaString("Digite o Nome");
+        localContato.setNome(itemDigitado);
+        System.out.println("Nosso Item contendo no Array o Boolen: " + lista.BuscaObjectosContatosBoolen(localContato));
+
+    }
+
+    /****************************************
+     * 05*********pass Especific Element Return Int, se for -1 quer dizer q não
+     * existe, ser for outro numero é ao Index do
+     * Array********************************************************
+     */
+    private static void ContainsElementoInt(ExerciciosFeitos<Contatos> lista) {
+        Contatos localContato = new Contatos();
+        System.out.println("************Digite o Elemento a  Ser Pesquisado**************");
+        System.out.println("************Escolha do Elemento pelo seu Nome: \n\n" + lista.getName());
+        String itemDigitado = LerInformacaoDigitadaString("Digite o Nome");
+        localContato.setNome(itemDigitado);
+        System.out.println("Nosso Item contido no Index numero: " + lista.BuscaObjectosContatosInt(localContato));
+
+    }
+
+    /****************************************
+     * 06*********pass Especific Element Name and will retorn the INDEX, If was -1
+     * it mean doesnt exist
+     * existe, ser for outro numero é ao Index do
+     * Array********************************************************
+     */
+    private static void IndexOfElemento(ExerciciosFeitos<Contatos> lista) {
+        Contatos localContato = new Contatos();
+        System.out.println("************Digite o Elemento **************");
+        System.out.println("************Escolha  seu Nome: \n\n" + lista.getName());
+        String itemDigitado = LerInformacaoDigitadaString("Digite o Nome");
+        localContato.setNome(itemDigitado);
+        System.out.println("Nosso Index do 1º Elemento é:  " + lista.BuscaObjectosContatoIndexOf(localContato));
+
+    }
+
+    /****************************************
+     * 07*********pass Especific Element Name and will return the LAST INDEX, If was
+     * -1 it mean doesnt exist
      * existe, ser for outro numero é ao Index do
      * Array********************************************************
      */
 
-    private static void ContainsInt(ExerciciosFeitos<Contatos> lista) {
-        System.out.println("************Digite o Elemento a  Ser Pesquisado**************");
-        System.out.println("************Escolha do Elemento pelo seu Nome: \n\n" + lista);
-        String itemDigitado = LerInformacaoDigitadaString("Digite o Contato");
-        System.out.println("Nosso Item contendo no Array: " + itemDigitado);
+    private static void LastIndexOfElemento(ExerciciosFeitos<Contatos> lista) {
+        Contatos localContato = new Contatos();
+        Contatos localContatoDuplicado = new Contatos();
+        localContatoDuplicado.setNome("1Tony");
+        localContatoDuplicado.setEmail("1Tony@gmail.com");
+        localContatoDuplicado.setTelefone(312345678);
+        lista.add(localContatoDuplicado);
+        System.out.println("************Digite o Elemento **************");
+      //  System.out.println("************Escolha  seu Nome: \n\n" + lista.getName());
+        String itemDigitado = LerInformacaoDigitadaString("Digite o Nome");
+        localContato.setNome(itemDigitado);
+
+        System.out.println("Nosso Index do 1º Elemento é:  " + lista.BuscaObjectosContatoLastIndexOf(localContato));
 
     }
+
 }

@@ -13,8 +13,8 @@ public class Exerc01 {
         localArray.add("C");
 
 
-       System.out.println(localArray.containsB("D"));
-       System.out.println(localArray.containsI("C"));
+       System.out.println(localArray.BuscaB("D"));
+       System.out.println(localArray.BuscaI("C"));
 
     }
 
