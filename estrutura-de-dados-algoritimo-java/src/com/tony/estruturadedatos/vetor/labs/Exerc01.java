@@ -2,12 +2,12 @@ package com.tony.estruturadedatos.vetor.labs;
 
 
 
-import com.tony.estruturadedatos.vetor.ExerciciosFeitos;
+import com.tony.estruturadedatos.vetor.Lista2;
 
 public class Exerc01 {
     
     public static void main(String[] args) {
-        ExerciciosFeitos<String> localArray = new ExerciciosFeitos<String>(5);
+        Lista2<String> localArray = new Lista2<String>(5);
         localArray.add("A");
         localArray.add("B");
         localArray.add("C");

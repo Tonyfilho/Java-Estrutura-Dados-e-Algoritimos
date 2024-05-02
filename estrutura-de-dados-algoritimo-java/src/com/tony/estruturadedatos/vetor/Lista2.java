@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 @SuppressWarnings("unchecked")
-public class ExerciciosFeitos<T> {
+public class Lista2<T> {
 
     // public ArrayList<T> localArray = new ArrayList<T>();
     private T[] localArray;
     private int tamanho;
 
-    public ExerciciosFeitos(int size) {
+    public Lista2(int size) {
         this.localArray = (T[]) new Object[size];
         this.tamanho = 0;
     }
@@ -146,7 +146,7 @@ public class ExerciciosFeitos<T> {
      */
     public int lastIndexOfLocal(T elemento) {
         int lastIndex = -1;
-        for (int i = tamanho - 1; i >= 0; i--) { 
+        for (int i = tamanho - 1; i >= 0; i--) {
             if (localArray[i].equals(elemento)) {
                 return i;
             }
@@ -239,12 +239,11 @@ public class ExerciciosFeitos<T> {
 
     /************** Exercicio 06_Busca por Objeto******************** */
     public boolean BuscaObjectosContatosBoolen(Contatos contato) {
-    
 
         ArrayList<Contatos> localList = new ArrayList<Contatos>(localArray.length);
         /** Transformando a Matrix de contato em uma Lista de contato */
         for (int i = 0; i < localArray.length; i++) {
-            localList.add((Contatos) localArray[i]);           
+            localList.add((Contatos) localArray[i]);
         }
         /**
          * /º tem q filtrar para buscar o nome e depois mapear , n pode mapear 1º,
@@ -277,42 +276,57 @@ public class ExerciciosFeitos<T> {
         StringBuilder nome = new StringBuilder();
 
         try {
-            for (Object itens :  localArray) {
+            for (Object itens : localArray) {
                 nome.append(((Contatos) itens).getNome()).append(", ");
             }
-            
+
         } catch (Exception e) {
-           System.out.println("Itens Nulos: ");
+            System.out.println("Itens Nulos: ");
         }
         return nome.toString();
     }
 
-    
     public int BuscaObjectosContatoIndexOf(Contatos localContato) {
         int index = -1;
-        for (int i = 0; i < localArray.length; i ++) {
-           // System.out.println("GETNOME()"+((Contatos)localArray[i]).getNome());
-           if (((Contatos)localArray[i]).getNome().contains(localContato.getNome())) {
-               return  index = i;
-           } 
+        for (int i = 0; i < localArray.length; i++) {
+            // System.out.println("GETNOME()"+((Contatos)localArray[i]).getNome());
+            if (((Contatos) localArray[i]).getNome().contains(localContato.getNome())) {
+                return index = i;
+            }
         }
 
         return index;
     }
+
     public int BuscaObjetosContatoLastIndexOf(Contatos localContato) {
-        int index = -1;       
-        for (int i = localArray.length -1; i >= 0; i --) {
-           // System.out.println("GETNOME()"+((Contatos)localArray[i]).getNome());
-           try {
-               if (((Contatos)localArray[i]).getNome().contains(localContato.getNome())) {
-                   return  index = i;
-               } 
-            
-           } catch (Exception e) {
-             System.out.println("item nulo no Array dentro BuscaObjetosLastIndexOf, por cause do Retorno na Ultima posição do Array" );
-           }
+        int index = -1;
+        for (int i = localArray.length - 1; i >= 0; i--) {
+            // System.out.println("GETNOME()"+((Contatos)localArray[i]).getNome());
+            try {
+                if (((Contatos) localArray[i]).getNome().contains(localContato.getNome())) {
+                    return index = i;
+                }
+
+            } catch (Exception e) {
+                System.out.println(
+                        "item nulo no Array dentro BuscaObjetosLastIndexOf, por cause do Retorno na Ultima posição do Array");
+            }
         }
 
         return index;
+    }
+
+    public String allItens() {
+        StringBuilder allList = new StringBuilder();
+        allList.append("Nossa Lista: ");
+        for (Object item : localArray) {
+            allList.append(item);
+            allList.append("\n ");
+        }
+       allList.append("Fim");
+
+
+        return allList.toString();
+
     }
 }

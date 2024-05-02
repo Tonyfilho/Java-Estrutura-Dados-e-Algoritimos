@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import com.tony.estruturadedatos.vetor.Contatos;
-import com.tony.estruturadedatos.vetor.ExerciciosFeitos;
+import com.tony.estruturadedatos.vetor.Lista2;
 
 public class Exerc06 {
 
@@ -19,7 +19,7 @@ public class Exerc06 {
         Scanner scan = new Scanner(System.in);
 
         /** Criar Vetor com 20 Capacidade */
-        ExerciciosFeitos<Contatos> lista = new ExerciciosFeitos<Contatos>(4);
+        Lista2<Contatos> lista = new Lista2<Contatos>(4);
 
         /** Criar e adcionar dinamicamente */
         CriarContatosDinamicamente(5, lista);
@@ -40,24 +40,25 @@ public class Exerc06 {
     }
 
     /** Metodo Statico para criar contatos */
-    private static void CriarContatosDinamicamente(int quant, ExerciciosFeitos<Contatos> lista) {
+    private static void CriarContatosDinamicamente(int quant, Lista2<Contatos> lista) {
         Contatos contato;
-        
+
         for (int i = 1; i < quant; i++) {
             contato = new Contatos();
-            contato.setNome( i+"Tony ");
-            contato.setEmail(i+"tony@email.com");
-            contato.setTelefone(123456789 +i);
-            System.out.println("Contato: "+ contato);
+            contato.setNome(i + "Tony ");
+            contato.setEmail(i + "tony@email.com");
+            contato.setTelefone(123456789 + i);
+          
             lista.add(contato);
-            
+
         }
+        /**Não aceita fora do For */
         // contato.setNome("1Tony");
         // contato.setEmail("1tony@email.com");
         // contato.setTelefone( 123456789);
         // lista.add( contato);
-        
-        System.out.println("Lista de Contato: "+ lista);
+
+        System.out.println("Lista de Contato: " + lista);
     }
 
     /** Metodo do Menu usando a classe Scaner */
@@ -111,7 +112,7 @@ public class Exerc06 {
         return option;
     }
 
-    public static int CallProgram(int option, ExerciciosFeitos<Contatos> lista) {
+    public static int CallProgram(int option, Lista2<Contatos> lista) {
 
         System.out.println("Options: " + option);
         switch (option) {
@@ -140,13 +141,18 @@ public class Exerc06 {
                 LastIndexOfElemento(lista);
                 break;
             case 8:
-
+                RemoveElementoPorPosicao(lista);
                 break;
             case 9:
-
+                RemoveTodos(lista);
                 break;
             case 10:
+                ImprimeTodos(lista);
 
+                break;
+
+            default:
+                System.out.println("Numero não achado");
                 break;
 
         }
@@ -157,6 +163,8 @@ public class Exerc06 {
      * Para cada Opção craaremos um metodo, alem é claro de cria uma metodo de
      * entrada
      */
+
+ 
 
     /** Metodo de Entrada de dados */
     @SuppressWarnings("resource")
@@ -215,7 +223,7 @@ public class Exerc06 {
             localContatos.setEmail(email);
             localContatos.setNome(nome);
             localContatos.setTelefone(nunTelefone);
-            
+
         } catch (Exception e) {
             System.out.println("Invalid Entrace. You Must Try Again \n\n");
         }
@@ -229,7 +237,7 @@ public class Exerc06 {
      * de Objetos, para setarmos a posição e Objeto no metodo Add(0, Object), dentro
      * no Menu.
      */
-    private static ArrayList<Object> AdcionaContatoPorPosicao(ExerciciosFeitos<Contatos> lista) {
+    private static ArrayList<Object> AdcionaContatoPorPosicao(Lista2<Contatos> lista) {
         ArrayList<Object> locaList = new ArrayList<Object>();
         Contatos localContatos = new Contatos();
         int lPosicao = 0;
@@ -264,7 +272,7 @@ public class Exerc06 {
      * 03**********Metodo Get pata buscar uma determinado Elemento do
      * Array****************************
      */
-    private static void BuscaElemento(ExerciciosFeitos<Contatos> lista) {
+    private static void BuscaElemento(Lista2<Contatos> lista) {
         int index = 0;
         // Contatos localContatos = new Contatos();
         System.out.println("************Digite o Index do Elemento a  Ser Retornado**************");
@@ -278,7 +286,7 @@ public class Exerc06 {
      * 04*********pass Especific Element Return Boolean ************
      */
 
-    private static void ContainsElementoBoolen(ExerciciosFeitos<Contatos> lista) {
+    private static void ContainsElementoBoolen(Lista2<Contatos> lista) {
         Contatos localContato = new Contatos();
         System.out.println("************Digite o Elemento a  Ser Pesquisado**************");
         System.out.println("************Escolha do Elemento pelo seu Nome: \n\n" + lista.getListNome());
@@ -293,7 +301,7 @@ public class Exerc06 {
      * existe, ser for outro numero é ao Index do
      * Array********************************************************
      */
-    private static void ContainsElementoInt(ExerciciosFeitos<Contatos> lista) {
+    private static void ContainsElementoInt(Lista2<Contatos> lista) {
         Contatos localContato = new Contatos();
         System.out.println("************Digite o Elemento a  Ser Pesquisado**************");
         System.out.println("************Escolha do Elemento pelo seu Nome: \n\n" + lista.getListNome());
@@ -309,10 +317,10 @@ public class Exerc06 {
      * existe, ser for outro numero é ao Index do
      * Array********************************************************
      */
-    private static void IndexOfElemento(ExerciciosFeitos<Contatos> lista) {
+    private static void IndexOfElemento(Lista2<Contatos> lista) {
         Contatos localContato = new Contatos();
         System.out.println("************Digite o Elemento **************");
-        System.out.println("************Escolha  seu Nome: \n" + lista.getListNome() +"\n" +"Nome Lista");
+        System.out.println("************Escolha  seu Nome: \n" + lista.getListNome() + "\n" + "Nome Lista");
         String itemDigitado = LerInformacaoDigitadaString("Digite o Nome");
         localContato.setNome(itemDigitado);
         System.out.println("Nosso Index do 1º Elemento é:  " + lista.BuscaObjectosContatoIndexOf(localContato));
@@ -326,14 +334,61 @@ public class Exerc06 {
      * Array********************************************************
      */
 
-    private static void LastIndexOfElemento(ExerciciosFeitos<Contatos> lista) {
+    private static void LastIndexOfElemento(Lista2<Contatos> lista) {
         Contatos localContato = new Contatos();
         System.out.println("************Digite o Elemento **************");
-        System.out.println("************Escolha  seu Nome: \n" + lista.getListNome() +"\n" +"Nome Lista");
+        System.out.println("************Escolha  seu Nome: \n" + lista.getListNome() + "\n" + "Nome Lista");
         String itemDigitado = LerInformacaoDigitadaString("Digite o Nome");
         localContato.setNome(itemDigitado);
 
         System.out.println("Nosso Index do 1º Elemento é:  " + lista.BuscaObjetosContatoLastIndexOf(localContato));
+
+    }
+
+    /****************************************
+     * 08*********pass Especific Position Name and will remove this position and
+     * return the removed Itens If was
+     * -1 it mean doesnt exist
+     * existe, ser for outro numero é ao Index do
+     * Array********************************************************
+     */
+
+    private static void RemoveElementoPorPosicao(Lista2<Contatos> lista) {
+        int index = 0;
+        // Contatos localContatos = new Contatos();
+        System.out.println("************Digite o Index do Elemento a  Ser Retornado**************");
+        System.out.println(
+                "************Escolha do Elemento pelo seu Index: \n" + lista.getListNome() + "\n" + "Nome Lista");
+        index = LerInformacaoDigitadaInt("Digite a Posicao de Busca do Array de 0 até: " + (lista.localLength() - 1));
+        System.out.println("O Elemento do Array é : " + lista.removeLocal(index));
+        System.out.println("Item Removido: " + lista.getListNome());
+    }
+
+    /****************************************
+     * 09*********RemoverTodos() remove todos itens do Array
+     * existe, ser for outro numero é ao Index do
+     * Array********************************************************
+     */
+
+    private static void RemoveTodos(Lista2<Contatos> lista) {
+
+        // Contatos localContatos = new Contatos();
+        System.out.println("************Digite o Index do Elemento a  Ser Retornado**************");
+        System.out.println(
+                "************Escolha do Elemento pelo seu Index: \n" + lista.getListNome() + "\n" + "Nome Lista");
+        System.out.println("Digite a Posicao de Busca do Array de 0 até: " + (lista.localLength() - 1));
+        lista.clearLocal();
+        System.out.println("Item Removido: " + lista.getListNome());
+    }
+
+  /****************************************
+     * 10 *********ImprimeTodos() Mostra todos itens do Array
+     * Array********************************************************
+     */
+
+    private static void ImprimeTodos(Lista2<Contatos> lista) {
+       System.out.println("Todos itens do Array: ");
+       System.out.println("Todos nosso Array: \n" + lista.allItens());
 
     }
 
