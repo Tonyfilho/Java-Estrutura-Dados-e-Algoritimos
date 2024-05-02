@@ -42,16 +42,22 @@ public class Exerc06 {
     /** Metodo Statico para criar contatos */
     private static void CriarContatosDinamicamente(int quant, ExerciciosFeitos<Contatos> lista) {
         Contatos contato;
-
+        
         for (int i = 1; i < quant; i++) {
             contato = new Contatos();
-            contato.setNome(i + "Tony");
-            contato.setEmail(i + "tony@email.com");
-            contato.setTelefone(i + 123456789);
-
+            contato.setNome( i+"Tony ");
+            contato.setEmail(i+"tony@email.com");
+            contato.setTelefone(123456789 +i);
+            System.out.println("Contato: "+ contato);
             lista.add(contato);
+            
         }
-
+        // contato.setNome("1Tony");
+        // contato.setEmail("1tony@email.com");
+        // contato.setTelefone( 123456789);
+        // lista.add( contato);
+        
+        System.out.println("Lista de Contato: "+ lista);
     }
 
     /** Metodo do Menu usando a classe Scaner */
@@ -114,7 +120,7 @@ public class Exerc06 {
 
                 break;
             case 2:
-                ArrayList<Object> localList = AdcionaContatoPorPosicao();
+                ArrayList<Object> localList = AdcionaContatoPorPosicao(lista);
                 lista.add(((int) localList.get(0)), ((Contatos) localList.get(1)));
 
                 break;
@@ -186,6 +192,7 @@ public class Exerc06 {
      */
 
     private static Contatos AdcionaContato() {
+        Contatos localContatos = new Contatos();
         int nunTelefone = 0;
         String nome;
         String email;
@@ -204,17 +211,29 @@ public class Exerc06 {
         System.out.println("************Digite o Email do contato**************");
         email = LerInformacaoDigitadaString("email: ");
 
-        return new Contatos(nome, nunTelefone, email);
+        try {
+            localContatos.setEmail(email);
+            localContatos.setNome(nome);
+            localContatos.setTelefone(nunTelefone);
+            
+        } catch (Exception e) {
+            System.out.println("Invalid Entrace. You Must Try Again \n\n");
+        }
+        System.out.println("Is Right, You Add Contact!");
+        return localContatos;
+
     }
 
     /*************************************
      * 02***************** Metodo Adciona por posição, onde retornamos um Arralist
-     * de Objetos
+     * de Objetos, para setarmos a posição e Objeto no metodo Add(0, Object), dentro
+     * no Menu.
      */
-    private static ArrayList<Object> AdcionaContatoPorPosicao() {
+    private static ArrayList<Object> AdcionaContatoPorPosicao(ExerciciosFeitos<Contatos> lista) {
         ArrayList<Object> locaList = new ArrayList<Object>();
         Contatos localContatos = new Contatos();
         int lPosicao = 0;
+        System.out.println("List: " + lista.getListNome());
 
         System.out.println("************Digite o Nome do contato**************");
         localContatos.setNome(LerInformacaoDigitadaString("Nome: "));
@@ -230,8 +249,13 @@ public class Exerc06 {
         System.out.println("************Digite a Posição do Array  em Numero**************");
 
         lPosicao = LerInformacaoDigitadaInt("Posicao Do Array: ");
-        locaList.add(lPosicao);
-        locaList.add(localContatos);
+        try {
+            locaList.add(lPosicao); /** Passando a posição no Index 0 */
+            locaList.add(localContatos); /** Passando o Objecto no Index 1 */
+
+        } catch (Exception e) {
+            System.out.println("Invalid Entrace. You Must Try Again \n\n");
+        }
 
         return locaList;
     }
@@ -257,7 +281,7 @@ public class Exerc06 {
     private static void ContainsElementoBoolen(ExerciciosFeitos<Contatos> lista) {
         Contatos localContato = new Contatos();
         System.out.println("************Digite o Elemento a  Ser Pesquisado**************");
-        System.out.println("************Escolha do Elemento pelo seu Nome: \n\n" + lista.getName());
+        System.out.println("************Escolha do Elemento pelo seu Nome: \n\n" + lista.getListNome());
         String itemDigitado = LerInformacaoDigitadaString("Digite o Nome");
         localContato.setNome(itemDigitado);
         System.out.println("Nosso Item contendo no Array o Boolen: " + lista.BuscaObjectosContatosBoolen(localContato));
@@ -272,7 +296,7 @@ public class Exerc06 {
     private static void ContainsElementoInt(ExerciciosFeitos<Contatos> lista) {
         Contatos localContato = new Contatos();
         System.out.println("************Digite o Elemento a  Ser Pesquisado**************");
-        System.out.println("************Escolha do Elemento pelo seu Nome: \n\n" + lista.getName());
+        System.out.println("************Escolha do Elemento pelo seu Nome: \n\n" + lista.getListNome());
         String itemDigitado = LerInformacaoDigitadaString("Digite o Nome");
         localContato.setNome(itemDigitado);
         System.out.println("Nosso Item contido no Index numero: " + lista.BuscaObjectosContatosInt(localContato));
@@ -288,7 +312,7 @@ public class Exerc06 {
     private static void IndexOfElemento(ExerciciosFeitos<Contatos> lista) {
         Contatos localContato = new Contatos();
         System.out.println("************Digite o Elemento **************");
-        System.out.println("************Escolha  seu Nome: \n\n" + lista.getName());
+        System.out.println("************Escolha  seu Nome: \n" + lista.getListNome() +"\n" +"Nome Lista");
         String itemDigitado = LerInformacaoDigitadaString("Digite o Nome");
         localContato.setNome(itemDigitado);
         System.out.println("Nosso Index do 1º Elemento é:  " + lista.BuscaObjectosContatoIndexOf(localContato));
@@ -304,17 +328,12 @@ public class Exerc06 {
 
     private static void LastIndexOfElemento(ExerciciosFeitos<Contatos> lista) {
         Contatos localContato = new Contatos();
-        Contatos localContatoDuplicado = new Contatos();
-        localContatoDuplicado.setNome("1Tony");
-        localContatoDuplicado.setEmail("1Tony@gmail.com");
-        localContatoDuplicado.setTelefone(312345678);
-        lista.add(localContatoDuplicado);
         System.out.println("************Digite o Elemento **************");
-      //  System.out.println("************Escolha  seu Nome: \n\n" + lista.getName());
+        System.out.println("************Escolha  seu Nome: \n" + lista.getListNome() +"\n" +"Nome Lista");
         String itemDigitado = LerInformacaoDigitadaString("Digite o Nome");
         localContato.setNome(itemDigitado);
 
-        System.out.println("Nosso Index do 1º Elemento é:  " + lista.BuscaObjectosContatoLastIndexOf(localContato));
+        System.out.println("Nosso Index do 1º Elemento é:  " + lista.BuscaObjetosContatoLastIndexOf(localContato));
 
     }
 

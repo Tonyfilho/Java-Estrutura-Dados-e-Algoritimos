@@ -146,7 +146,7 @@ public class ExerciciosFeitos<T> {
      */
     public int lastIndexOfLocal(T elemento) {
         int lastIndex = -1;
-        for (int i = tamanho - 1; i >= 0; i--) {
+        for (int i = tamanho - 1; i >= 0; i--) { 
             if (localArray[i].equals(elemento)) {
                 return i;
             }
@@ -273,10 +273,16 @@ public class ExerciciosFeitos<T> {
         return index;
     }
 
-    public String getName() {
+    public String getListNome() {
         StringBuilder nome = new StringBuilder();
-        for (Object itens :  localArray) {
-            nome.append(((Contatos) itens).getNome()).append(", ");
+
+        try {
+            for (Object itens :  localArray) {
+                nome.append(((Contatos) itens).getNome()).append(", ");
+            }
+            
+        } catch (Exception e) {
+           System.out.println("Itens Nulos: ");
         }
         return nome.toString();
     }
@@ -293,13 +299,18 @@ public class ExerciciosFeitos<T> {
 
         return index;
     }
-    public int BuscaObjectosContatoLastIndexOf(Contatos localContato) {
+    public int BuscaObjetosContatoLastIndexOf(Contatos localContato) {
         int index = -1;       
         for (int i = localArray.length -1; i >= 0; i --) {
            // System.out.println("GETNOME()"+((Contatos)localArray[i]).getNome());
-           if (((Contatos)localArray[i]).getNome().equals(localContato.getNome())) {
-               return  index = i;
-           } 
+           try {
+               if (((Contatos)localArray[i]).getNome().contains(localContato.getNome())) {
+                   return  index = i;
+               } 
+            
+           } catch (Exception e) {
+             System.out.println("item nulo no Array dentro BuscaObjetosLastIndexOf, por cause do Retorno na Ultima posição do Array" );
+           }
         }
 
         return index;
