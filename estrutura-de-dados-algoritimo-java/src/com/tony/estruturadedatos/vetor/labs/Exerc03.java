@@ -1,12 +1,12 @@
 package com.tony.estruturadedatos.vetor.labs;
 
-import com.tony.estruturadedatos.vetor.Lista2;
+import com.tony.estruturadedatos.vetor.ListaObjetos;
 
 public class Exerc03 {
 
 
     public static void main(String[] args) {
-        Lista2<Integer> exerciciosFeitos = new Lista2<Integer>(5);
+        ListaObjetos<Integer> exerciciosFeitos = new ListaObjetos<Integer>(5);
     
         exerciciosFeitos.add(1);
         exerciciosFeitos.add(2);

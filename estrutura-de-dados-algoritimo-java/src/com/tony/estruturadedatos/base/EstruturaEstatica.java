@@ -1,5 +1,6 @@
 package com.tony.estruturadedatos.base;
 
+@SuppressWarnings("unchecked")
 public class EstruturaEstatica<T> {
 
     private T[] elementos;
@@ -81,6 +82,19 @@ public class EstruturaEstatica<T> {
     }
 
 
+  
 
+    protected T remove(int posicao) {
+        T removed = this.elementos[posicao];
+        if (!(posicao >= 0 && posicao < this.tamanho)) {
+            throw new IllegalArgumentException("Posiçao invalida");
+        }
+        for (int index = posicao; index < this.tamanho - 1; index++) {
+            this.elementos[index] = this.elementos[index + 1];
+        }
+        this.tamanho--;
+
+        return removed;
+    }
 
 }

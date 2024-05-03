@@ -3,14 +3,20 @@ package com.tony.estruturadedatos.vetor;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
+/**
+ * Esta Classe é a mesma da classe Lista, com diferença que temos Metodos que
+ * tratam de OBJETOS, neste caso da Classe Contatos, com isto eles deixa de ser Generica 
+ * em relação a dados primitivos como Char ou Int e passa a resolver Objetos instanciados.
+ */
+
 @SuppressWarnings("unchecked")
-public class Lista2<T> {
+public class ListaObjetos<T> {
 
     // public ArrayList<T> localArray = new ArrayList<T>();
     private T[] localArray;
     private int tamanho;
 
-    public Lista2(int size) {
+    public ListaObjetos(int size) {
         this.localArray = (T[]) new Object[size];
         this.tamanho = 0;
     }
@@ -323,8 +329,7 @@ public class Lista2<T> {
             allList.append(item);
             allList.append("\n ");
         }
-       allList.append("Fim");
-
+        allList.append("Fim");
 
         return allList.toString();
 

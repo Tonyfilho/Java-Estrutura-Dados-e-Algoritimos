@@ -1,11 +1,11 @@
 package com.tony.estruturadedatos.vetor.labs;
 
-import com.tony.estruturadedatos.vetor.Lista2;
+import com.tony.estruturadedatos.vetor.ListaObjetos;
 
 public class Exerc05 {
     
     public static void main(String[] args) {
-        Lista2<Integer> exerciciosFeitos = new Lista2<Integer>(5);
+        ListaObjetos<Integer> exerciciosFeitos = new ListaObjetos<Integer>(5);
     
         System.out.println("1ª Adiçao Array antes da remoçao total:");
         exerciciosFeitos.add(1);
