@@ -18,22 +18,22 @@ public class ListaNova <T> extends EstruturaEstatica<T>{
      /**Iremos Implementar os Metodos e po-los   como protect , somente quem extender conseguirá ter acesso*/
      /**Metodos sobre Escritos */
     @Override
-    protected Boolean adiciona(T elemento) {
+    public Boolean adiciona(T elemento) {
         
         return super.adiciona(elemento); /**Temos q fazer ref. a SuperClasse e passar o Paramentro elemento */
     }
     @Override
-    protected Boolean adiciona(int posicao, T elemento) {
+    public Boolean adiciona(int posicao, T elemento) {
        
         return super.adiciona(posicao, elemento);  /**Temos q fazer ref. a SuperClasse e passar o Paramentro elemento */
     }
     @Override
-    protected int vertorTamanho() {
+    public int tamanho() {
        
-        return super.vertorTamanho();
+        return super.tamanho();
     }
     @Override
-    protected T remove(int posicao) {
+    public T remove(int posicao) {
         
         return super.remove(posicao);
     }

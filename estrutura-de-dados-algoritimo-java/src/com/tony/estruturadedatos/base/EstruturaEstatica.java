@@ -49,7 +49,7 @@ public class EstruturaEstatica<T> {
         }
     }
 
-    protected int vertorTamanho() {
+    public int tamanho() {
         return this.tamanho;
     }
 
