@@ -14,21 +14,18 @@ public class Pilha<T> extends EstruturaEstatica<T> {
     }
 
 
-    @Override
-    public Boolean adiciona(T elemento) {
-        
-        return super.adiciona(elemento);
+    /**Aula 14 */
+    /**Metodo Empilha, o mesmo do Adiciona, mas é para Pilha, sempre no Final
+     * 1ª será Garantir uma Aumento de capacidade, automatico, para n termos erro.
+     */
+    public void empilha(T elemento) {
+     super.adiciona(elemento);
+
     }
 
-    @Override
-    public Boolean adiciona(int posicao, T elemento) {
-        
-        return super.adiciona(posicao, elemento);
-    }
 
     @Override
-    public T remove(int posicao) {
-        
+    public T remove(int posicao) {        
         return super.remove(posicao);
     }
 

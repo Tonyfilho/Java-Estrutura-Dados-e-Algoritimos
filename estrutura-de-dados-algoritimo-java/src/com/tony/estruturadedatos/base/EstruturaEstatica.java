@@ -3,8 +3,8 @@ package com.tony.estruturadedatos.base;
 @SuppressWarnings("unchecked")
 public class EstruturaEstatica<T> {
 
-    private T[] elementos;
-    private int tamanho;
+   protected T[] elementos;
+   protected int indexTamanho;
 
     /**
      * Esta é a Solução do Livre Effective Java, que esta no Diretorio
@@ -14,7 +14,7 @@ public class EstruturaEstatica<T> {
     
     public EstruturaEstatica(int elemento) {
         this.elementos = (T[]) new Object[elemento];
-        this.tamanho = 0;
+        this.indexTamanho = 0;
     }
     
     public EstruturaEstatica() {
@@ -27,19 +27,20 @@ public class EstruturaEstatica<T> {
 
         StringBuilder s = new StringBuilder();
         s.append("[");
-        for (int i = 0; i < this.tamanho - 1; i++) {
+        for (int i = 0; i < this.indexTamanho - 1; i++) {
             s.append(this.elementos[i]);
             s.append(", ");
         }
-        if (this.tamanho > 0) {
-            s.append(this.elementos[this.tamanho - 1]);
+        if (this.indexTamanho > 0) {
+            s.append(this.elementos[this.indexTamanho - 1]);
         }
         s.append("]");
         return s.toString();
     }
 
-    private void aumentaCapacidade() {
-        if (this.elementos.length == this.tamanho) {
+   //protected void aumentaCapacidade() {
+   private void aumentaCapacidade() {
+        if (this.elementos.length == this.indexTamanho) {
             
             T[] elementosNovos = (T[]) new Object[this.elementos.length * 2];
             for (int i = 0; i < elementos.length; i++) {
@@ -50,14 +51,14 @@ public class EstruturaEstatica<T> {
     }
 
     public int tamanho() {
-        return this.tamanho;
+        return this.indexTamanho;
     }
 
     protected Boolean adiciona(T elemento) {
         this.aumentaCapacidade();
-        if (this.tamanho < this.elementos.length) {
-            elementos[this.tamanho] = elemento;
-            tamanho++;
+        if (this.indexTamanho < this.elementos.length) {
+            elementos[this.indexTamanho] = elemento;
+            indexTamanho++;
             return true;
         } else {
             return false;
@@ -65,18 +66,18 @@ public class EstruturaEstatica<T> {
     }
 
     protected Boolean adiciona(int posicao, T elemento) {
-        if (!(posicao >= 0 && posicao < this.tamanho)) {
+        if (!(posicao >= 0 && posicao < this.indexTamanho)) {
             throw new IllegalArgumentException("Posiçao invalida");
         }
         this.aumentaCapacidade();
         // mover todos os elementos para frente
-        for (int i = this.tamanho - 1; i >= posicao; i--) {
+        for (int i = this.indexTamanho - 1; i >= posicao; i--) {
             this.elementos[i + 1] = this.elementos[i]; // Vetor 4+1(5), irá receber a Posição 4
         }
         // salvar posicao
         this.elementos[posicao] = elemento;
         // Incrementar o tamanho
-        this.tamanho++;
+        this.indexTamanho++;
 
         return true;
     }
@@ -86,13 +87,13 @@ public class EstruturaEstatica<T> {
 
     protected T remove(int posicao) {
         T removed = this.elementos[posicao];
-        if (!(posicao >= 0 && posicao < this.tamanho)) {
+        if (!(posicao >= 0 && posicao < this.indexTamanho)) {
             throw new IllegalArgumentException("Posiçao invalida");
         }
-        for (int index = posicao; index < this.tamanho - 1; index++) {
+        for (int index = posicao; index < this.indexTamanho - 1; index++) {
             this.elementos[index] = this.elementos[index + 1];
         }
-        this.tamanho--;
+        this.indexTamanho--;
 
         return removed;
     }
