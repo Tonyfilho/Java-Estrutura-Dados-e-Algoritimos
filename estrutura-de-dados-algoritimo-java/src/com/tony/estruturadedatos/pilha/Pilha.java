@@ -40,14 +40,23 @@ public class Pilha<T> extends EstruturaEstatica<T> {
     }
 
     /** Aula 16 Metodo que pega o ultimo da pilha ou seja o TOPO */
-    /**Sabemos que o ULTIMO elemento ou seja o Topo é o TAMANHO -1 */
+    /** Sabemos que o ULTIMO elemento ou seja o Topo é o TAMANHO -1 */
 
     public T topo() {
-        /**Temos que proteger caso a Pilha esteja Vazia com o IF */
+        /** Temos que proteger caso a Pilha esteja Vazia com o IF */
         if (this.estaVazia()) {
             return null;
         }
-        return this.elementos[tamanho -1] ;
+        return this.elementos[tamanho - 1];
+    }
+
+    /** Recebo O topo, deminu - o tamanho e retorno o elemento removido */
+    public T desempilha() {
+        T elemento = this.topo();
+        tamanho--;
+
+        return elemento;
+
     }
 
 }
