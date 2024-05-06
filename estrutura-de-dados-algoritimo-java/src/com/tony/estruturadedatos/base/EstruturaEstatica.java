@@ -101,7 +101,7 @@ public class EstruturaEstatica<T> {
 
     /**Aula 15 Metodo paga retorna TRUE se estiver Vazia ou False se tiver elemeto */
 
-    protected boolean estaVazia() {
+    public boolean estaVazia() {
         return this.tamanho == 0; /**Se isto for verdade o retorno será TRUE */
     }
 
