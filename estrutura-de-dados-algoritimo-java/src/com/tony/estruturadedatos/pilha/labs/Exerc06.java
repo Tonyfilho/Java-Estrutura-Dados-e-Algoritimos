@@ -1,4 +1,4 @@
-package com.tony.estruturadedatos.vetor.labs;
+package com.tony.estruturadedatos.pilha.labs;
 
 import java.util.Scanner;
 import java.util.Stack;
@@ -10,7 +10,7 @@ import com.tony.estruturadedatos.pilha.Pilha;
  * de PILHA
  */
 @SuppressWarnings("resource")
-public class Exerc07 {
+public class Exerc06 {
 
     public static void main(String[] args) {
         IsPalindromo2();
@@ -30,7 +30,7 @@ public class Exerc07 {
             return infoDigitada = localScanner.nextLine();
 
         } catch (Exception e) {
-            System.out.println("Invalid Entrace. Must be Number. Try Again \n\n");
+            System.out.println("Invalid Entrace. Try Again \n\n");
         }
 
         return infoDigitada;
