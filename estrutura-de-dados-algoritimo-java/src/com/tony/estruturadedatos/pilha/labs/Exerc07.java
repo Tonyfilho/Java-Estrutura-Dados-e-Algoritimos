@@ -21,6 +21,7 @@ public class Exerc07 {
      * 1º Metodo Ler informações da Tela
      */
 
+    @SuppressWarnings("resource")
     static String LerInformacaoDigitada() {
         Scanner localScanner = new Scanner(System.in);
         String infoDigitada = "";
