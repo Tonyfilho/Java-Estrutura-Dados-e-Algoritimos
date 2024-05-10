@@ -16,13 +16,20 @@ public class Fila<T> extends EstruturaEstatica<T> {
         super.adiciona(elemento);
     }
 
-    public T espiar () {
+    /** Lembrando que no comportamento de Fila, temos q saber que será o proximo */
+    public T espiar() {
 
-        return super.elementos[super.tamanho() -1];
+        if (super.estaVazia()) {
+            return null;
+        }
+        return super.elementos[0];
     }
 
     public T desenfileirado() {
-      return this.remove(0);
+        if (super.estaVazia()) {
+            return null;
+        }
+        return this.remove(0);
     }
 
 }
