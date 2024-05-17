@@ -10,17 +10,18 @@ import com.tony.estruturadedatos.fila.FilaComPrioridade;
  * Java
  */
 public class Aula24 {
+    @SuppressWarnings("rawtypes")
     public static void main(String[] args) {
 
-        // FilaComPrioridade<Integer> filaErrada = new FilaComPrioridade<Integer>();
+        FilaComPrioridade<Integer> filaInt = new FilaComPrioridade<Integer>();
 
         FilaComPrioridade<Paciente> fila = new FilaComPrioridade<Paciente>();
 
-        // filaErrada.enfileiraSemObjetos(5);
-        // filaErrada.enfileiraSemObjetos(2);
-        // filaErrada.enfileiraSemObjetos(1);
+        filaInt.enfileirar(5);
+        filaInt.enfileirar(2);
+        filaInt.enfileirar(1);
 
-        // System.out.println("Fila: " + filaErrada);
+        System.out.println("Fila: " + filaInt);
 
         fila.enfileirar(new Paciente("tony", 3));
         fila.enfileirar(new Paciente("Juan", 1));

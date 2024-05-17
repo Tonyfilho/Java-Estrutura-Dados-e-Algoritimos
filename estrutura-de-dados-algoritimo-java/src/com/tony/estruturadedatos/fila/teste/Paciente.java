@@ -4,12 +4,12 @@ package com.tony.estruturadedatos.fila.teste;
  * Esta Classe foi criada como Ex de Objeto para usarmos o Comparable no exercicio 24
  */
 @SuppressWarnings("rawtypes")
-public class Paciente implements Comparable {
+public class Paciente<T> implements Comparable<T> {
     private String nome;
 
-    private Integer prioridade;
+    private int prioridade;
 
-    public Paciente(String nome, Integer prioridade) {
+    public Paciente(String nome, int prioridade) {
         super();
         this.nome = nome;
         this.prioridade = prioridade;
@@ -27,11 +27,11 @@ public class Paciente implements Comparable {
         this.nome = nome;
     }
 
-    public Integer getPrioridade() {
+    public int getPrioridade() {
         return prioridade;
     }
 
-    public void setPrioridade(Integer prioridade) {
+    public void setPrioridade(int prioridade) {
         this.prioridade = prioridade;
     }
 

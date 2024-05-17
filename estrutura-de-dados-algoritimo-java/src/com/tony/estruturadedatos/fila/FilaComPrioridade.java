@@ -55,7 +55,7 @@ public class FilaComPrioridade<T> extends Fila<T> {
      * 6ª Se achamos a posição daremos um Break;
      * 7º E fora do For adcionaremos na posição salva na ver I.
      */
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings("unchecked")   
     public void enfileirar(T elemento) {
 
         Comparable<T> chave = (Comparable<T>) elemento;
@@ -64,9 +64,10 @@ public class FilaComPrioridade<T> extends Fila<T> {
             if (chave.compareTo(this.elementos[i]) < 0) {
                 break;
             }
-
+       
         }
-        System.out.println("Posicao: " + i);
+
+      //  System.out.println("Posicao: " + i);
         this.adiciona(i, ((T)chave)); // elemento é a mesma coisa se fazer o Casting
 
     }
