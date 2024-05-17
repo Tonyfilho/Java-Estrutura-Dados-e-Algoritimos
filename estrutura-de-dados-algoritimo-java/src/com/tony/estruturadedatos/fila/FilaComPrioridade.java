@@ -44,6 +44,11 @@ public class FilaComPrioridade<T> extends Fila<T> {
         }
     }
 
+    /**
+     * OBS: Este Metodo é uma Forma Manual de se criar fila com Prioridade sem Usar a API 
+     * PriorityQueue do Java.Utils
+     */
+
     /********************
      * Usaremos o Comperable Criamos uma Classe como Ex: de Objetos
      * 1ª cria uma variavel tipada do Comparable.
@@ -65,9 +70,7 @@ public class FilaComPrioridade<T> extends Fila<T> {
                 break;
             }
        
-        }
-
-      //  System.out.println("Posicao: " + i);
+        }      
         this.adiciona(i, ((T)chave)); // elemento é a mesma coisa se fazer o Casting
 
     }
