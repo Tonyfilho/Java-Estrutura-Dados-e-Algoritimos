@@ -10,6 +10,7 @@ import com.tony.estruturadedatos.fila.FilaComPrioridade;
  * Temos que aproveitar a mesma Fila, 
  * Criar uma prioridade Aleatória
  */
+@SuppressWarnings("unused")
 public class PSNovosAtendimentos implements Runnable {
 
     private FilaComPrioridade<Pessoa> fila;
