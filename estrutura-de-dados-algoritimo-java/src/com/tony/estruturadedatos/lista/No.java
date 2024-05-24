@@ -13,10 +13,7 @@ public class No <T> {
 
     private No<T> proximo;
 
-    public No() {
-       
-    } 
-
+  
 
 
     public No(T elemento) {
@@ -55,7 +52,7 @@ public class No <T> {
     }
     @Override
     public String toString() {
-        return " No.elemento=" + elemento + ", No.proximo=" + proximo + "; ";
+        return " No.elemento=" + elemento + ", No.proximo=" + proximo + " ";
     } 
 
 

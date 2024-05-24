@@ -10,15 +10,19 @@ public class ListaEncadeadaExec {
 
         lista.adiciona(1);
         
-        System.out.println("\nNossa Lista \n" + lista + "\nTamanho da Lista " +  lista.getTamanho());
+        System.out.println("\nNossa Lista \n" + lista +
+         "\nTamanho da Lista " +  lista.getTamanho());
         
         lista.adiciona(2);
-        System.out.println("\nNossa Lista \n" + lista + "\nTamanho da Lista " +  lista.getTamanho());
+        System.out.println("\nNossa Lista \n" + lista +
+         "\nTamanho da Lista " +  lista.getTamanho());
 
         lista.adiciona(3);
-        System.out.println("\nNossa Lista \n" + lista + "\nTamanho da Lista " +  lista.getTamanho());
+        System.out.println("\nNossa Lista \n" + lista +
+         "\nTamanho da Lista " +  lista.getTamanho());
 
         lista.adiciona(4);
-        System.out.println("\nNossa Lista \n" + lista + "\nTamanho da Lista " +  lista.getTamanho());
+        System.out.println("\nNossa Lista \n" + lista +
+         "\nTamanho da Lista " +  lista.getTamanho());
     }
 }
