@@ -24,5 +24,8 @@ public class ListaEncadeadaExec {
         lista.adiciona(4);
         System.out.println("\nNossa Lista \n" + lista +
          "\nTamanho da Lista " +  lista.getTamanho());
+
+
+         System.out.println("ToString2 com for: " + lista.toStringComFor());
     }
 }
