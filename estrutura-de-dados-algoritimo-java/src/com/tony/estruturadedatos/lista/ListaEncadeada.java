@@ -51,7 +51,8 @@ public class ListaEncadeada<T> {
      * 1ª coisa é saber se a Lista esta Vazia, retornaremos um Array vazio [];
      * 2º coisa é criar uma Variavel Atual que receba o Inicio,
      * 3ª Se fosse Interá como se fosse um Array começariamos com o Zero;
-     * 4ª Adcionar o Atual no Builder antes de entrar no While e adcionar uma Virgula.
+     * 4ª Adcionar o Atual no Builder antes de entrar no While e adcionar uma
+     * Virgula.
      * 5ª dentro do While vamos mover o Atual p para o Proximo Elemento.
      * 6º Movendo para proximo elemento, repetimos o Builder
      * 7ª retornar a String.
@@ -70,26 +71,63 @@ public class ListaEncadeada<T> {
             atual = atual.getProximo();
             builder.append(atual.getElemento()).append(" ,");
         }
-        builder.deleteCharAt(builder.lastIndexOf(","));
+        builder.deleteCharAt(builder.lastIndexOf(",")); /** removendo a ultima virgula */
         builder.append("]");
         return builder.toString();
     }
-    /**Sobre escrevemos pois para mostrar como fazer com o FOR */
-    
+
+    /** Sobre escrevemos pois para mostrar como fazer com o FOR */
+
     public String toStringComFor() {
         StringBuilder builder = new StringBuilder();
         if (tamanho == 0) {
             return builder.append("[]").toString();
         }
         No<T> atual = this.inicioNO;
-        builder.append("[");     
+        builder.append("[");
         for (int i = 0; i < tamanho; i++) {
             builder.append(atual.getElemento()).append(" ,");
             atual = atual.getProximo();
         }
-        builder.deleteCharAt(builder.lastIndexOf(","));
+        builder.deleteCharAt(builder.lastIndexOf(",")); /** removendo a ultima virgula */
         builder.append("]");
         return builder.toString();
+    }
+
+    /** Limpa Lista, Há duas formas */
+    /**
+     * Aqui na neste Ex> o Garbath Collection irá limpar a memoria, isto n é o mais
+     * indicado, é funcional.
+     */
+    public void limpaSimples() {
+        this.inicioNO = null;
+        this.tamanho = 0;
+        this.ultimoNO = null;
+
+    }
+
+    /***Iremos misturar um FOR com While  algo assim */
+    /**
+     * 1º Não  teremos a interação, do I mas teremos atual !=null
+     * 2º Criamos uma Instancia de proximo, onde passaremos o Ponteiro de Atual ---> proximo.
+     * 3º setar as variaveis que temos na Intancia " Nó ".
+     * 
+     */
+    public void limpaS() {
+        
+        for (No<T> atual = this.inicioNO; atual != null;) {
+            No<T> proximo = atual.getProximo();
+            atual.setElemento(null);
+            atual.setProximo(null);
+            atual = proximo;
+            
+        }
+       
+        this.tamanho = 0;
+        this.inicioNO = null;
+        this.ultimoNO = null;
+      
+
     }
 
 }
