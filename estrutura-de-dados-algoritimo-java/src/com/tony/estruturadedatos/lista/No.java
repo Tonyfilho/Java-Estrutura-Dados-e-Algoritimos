@@ -53,10 +53,49 @@ public class No <T> {
     @Override
     public String toString() {
         return " No.elemento=" + elemento + ", No.proximo=" + proximo + " ";
+    }
+
+
+
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((elemento == null) ? 0 : elemento.hashCode());
+        result = prime * result + ((proximo == null) ? 0 : proximo.hashCode());
+        return result;
+    }
+
+
+
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        No<T> other = (No<T>) obj;
+        if (elemento == null) {
+            if (other.elemento != null)
+                return false;
+        } else if (!elemento.equals(other.elemento))
+            return false;
+        if (proximo == null) {
+            if (other.proximo != null)
+                return false;
+        } else if (!proximo.equals(other.proximo))
+            return false;
+        return true;
     } 
 
 
 
+    
     
 
 
