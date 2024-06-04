@@ -15,6 +15,28 @@ public class ListaEncadeada<T> {
 
     private final int NAO_ENCONTRADO = -1;
 
+    /**
+     * temos 2 casos aqui:
+     * 1ª Se o tamanho é Iqual a Zero, crimos um NÓ, e inicio e ultimo passa a ser o
+     * novoNó.
+     * 2ª Senão setaremos usando ou Set ou o construtor q recebe alem do elemento a
+     * posição
+     * 
+     * 
+     */
+    @SuppressWarnings({ "rawtypes", "unchecked"})
+    public void adcionaNoInicio(T elemento) {
+        if (this.tamanho == 0) {
+            No<T> novoNo = new No(elemento);
+            this.inicioNO = novoNo; // inicio recebe o novo
+            this.ultimoNO = novoNo; // ultimo recebe o novo
+        } else {
+            No<T> novoNo = new No(elemento, this.inicioNO);
+           this.inicioNO = novoNo;
+        }
+        this.tamanho++;
+    }
+
     public void adiciona(T elemento) {
         No<T> celula = new No<T>(elemento);
         /** Criando o NO */
@@ -37,6 +59,39 @@ public class ListaEncadeada<T> {
         }
         this.ultimoNO = celula; /** Pegaremos o Ponteiro do UltimoNO --> e Apontaremos para Celula */
         this.tamanho++;
+
+    }
+
+    /** Adciona em qualquer posição */
+    /**
+     * Neste Metodo precisamos explorá 4 cenarios.
+     * 1ª Posição menor q 0 ou maior q tamanho, mandamos um erro
+     * 2ª Se a Lista esta Vazia ou tamanho == 0; ou Inicio é Null;
+     * 3º Se a posição é o mesmo q tamanho , ou seja Adciona na Ultima, este nos ja
+     * temos pronto.
+     * 4º Senão é o inicio ou no final é onde precisamos adcionar, e temos q buscar pela posição.
+     * 
+     * 
+     * 
+     */
+    public void adiciona(int posicao, T elemento) {
+        if (this.tamanho < posicao || posicao < 0) {
+            throw new IllegalArgumentException("Posição Invalida");
+        }
+
+        if (posicao == 0) { /* esta Vazio */
+            this.adcionaNoInicio(elemento);
+        } else if (posicao == this.tamanho) { /** Adcionar no Ultimo */
+            this.adiciona(elemento);
+        }
+        else { //busca  aposição anterior para faazermos a ligação
+            No<T> noAnterior = this.buscaNo(posicao); /**Salvando a Referencia da posição atual */
+            No<T> proximoNo = noAnterior.getProximo(); /**Salvando a Referencia Depois da posição */
+            No<T> novoNo = new No<>(elemento, proximoNo.getProximo());
+            noAnterior.setProximo(novoNo);
+            this.tamanho++;
+
+        }
 
     }
 
