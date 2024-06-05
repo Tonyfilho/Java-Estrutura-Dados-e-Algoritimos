@@ -85,13 +85,39 @@ public class ListaEncadeada<T> {
 
             No<T> noAnterior = this.buscaNo(posicao); /**Salvando a Referencia da posição atual */
             No<T> proximoNo = noAnterior.getProximo(); /**Salvando a Referencia Depois da posição */
-            No<T> novoNo = new No<>(elemento, proximoNo.getProximo());
+            No<T> novoNo = new No<>(elemento, proximoNo);
             noAnterior.setProximo(novoNo);
             this.tamanho++;
 
         }
 
     }
+
+
+    /**Remove do inicio */
+    /**
+     * 1ª se tamanho for == 0, ja elelimina outra possibilidade dotipo tamanho negativo
+     * 2º Retornaremos a Referencia do elemento removido.
+     * 3º Diminir o tamanho.
+     * 4º È Si  o tamanho passou a ser  0, temos q remosver a ref. do ultimo.
+     * Obs: Não preciso por Inicio como Null. Pois se for Zero o tamanho , ele ja vai pegar o GetProximo(null);
+     */
+    public T removeInicio() {
+        if (this.tamanho == 0) {
+            throw new RuntimeException("Lista esta Vazia");
+        }
+        T removido = this.inicioNO.getElemento();
+        this.inicioNO= this.inicioNO.getProximo();
+        this.tamanho--;
+        if (this.tamanho == 0) {
+            this.ultimoNO = null;
+        }
+
+        return removido;
+    }
+
+
+
 
     public int getTamanho() {
         return this.tamanho;
@@ -150,12 +176,12 @@ public class ListaEncadeada<T> {
      * por causa da Posição do FOR.
      */
     private No<T> buscaNo(int posicao) {
-        No<T> noAtual = this.inicioNO;
         if (this.posicaoNaoExiste(posicao)) {
             throw new IllegalArgumentException("Posição não existe.");
-
+            
         }
-
+        
+        No<T> noAtual = this.inicioNO;
         for (int i = 0; i < posicao; i++) {
             noAtual = noAtual.getProximo();
 
