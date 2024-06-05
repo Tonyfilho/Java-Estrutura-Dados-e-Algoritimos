@@ -70,13 +70,10 @@ public class ListaEncadeada<T> {
      * 3º Se a posição é o mesmo q tamanho , ou seja Adciona na Ultima, este nos ja
      * temos pronto.
      * 4º Senão é o inicio ou no final é onde precisamos adcionar, e temos q buscar pela posição.
-     * 
-     * 
-     * 
      */
     public void adiciona(int posicao, T elemento) {
-        if (this.tamanho < posicao || posicao < 0) {
-            throw new IllegalArgumentException("Posição Invalida");
+        if (this.posicaoNaoExiste(posicao)) {
+            throw new IllegalArgumentException("Posiçao Invalida");
         }
 
         if (posicao == 0) { /* esta Vazio */
@@ -85,6 +82,7 @@ public class ListaEncadeada<T> {
             this.adiciona(elemento);
         }
         else { //busca  aposição anterior para faazermos a ligação
+
             No<T> noAnterior = this.buscaNo(posicao); /**Salvando a Referencia da posição atual */
             No<T> proximoNo = noAnterior.getProximo(); /**Salvando a Referencia Depois da posição */
             No<T> novoNo = new No<>(elemento, proximoNo.getProximo());
@@ -99,57 +97,7 @@ public class ListaEncadeada<T> {
         return this.tamanho;
     }
 
-    /***
-     * Estaremos fazendo uma modificação no ToString() para percorrer nossa lista
-     * como se fosse um Array
-     * [1,2,3,4....] e termos esta saida.
-     */
-    /**
-     * 1ª coisa é saber se a Lista esta Vazia, retornaremos um Array vazio [];
-     * 2º coisa é criar uma Variavel Atual que receba o Inicio,
-     * 3ª Se fosse Interá como se fosse um Array começariamos com o Zero;
-     * 4ª Adcionar o Atual no Builder antes de entrar no While e adcionar uma
-     * Virgula.
-     * 5ª dentro do While vamos mover o Atual p para o Proximo Elemento.
-     * 6º Movendo para proximo elemento, repetimos o Builder
-     * 7ª retornar a String.
-     * 
-     */
-    @Override
-    public String toString() {
-        StringBuilder builder = new StringBuilder();
-        if (tamanho == 0) {
-            return builder.append("[]").toString();
-        }
-        No<T> atual = this.inicioNO;
-        builder.append("[");
-        builder.append(atual.getElemento()).append(" ,");
-        while (atual.getProximo() != null) {
-            atual = atual.getProximo();
-            builder.append(atual.getElemento()).append(" ,");
-        }
-        builder.deleteCharAt(builder.lastIndexOf(",")); /** removendo a ultima virgula */
-        builder.append("]");
-        return builder.toString();
-    }
-
-    /** Sobre escrevemos pois para mostrar como fazer com o FOR */
-
-    public String toStringComFor() {
-        StringBuilder builder = new StringBuilder();
-        if (tamanho == 0) {
-            return builder.append("[]").toString();
-        }
-        No<T> atual = this.inicioNO;
-        builder.append("[");
-        for (int i = 0; i < tamanho; i++) {
-            builder.append(atual.getElemento()).append(" ,");
-            atual = atual.getProximo();
-        }
-        builder.deleteCharAt(builder.lastIndexOf(",")); /** removendo a ultima virgula */
-        builder.append("]");
-        return builder.toString();
-    }
+   
 
     /** Limpa Lista, Há duas formas */
     /**
@@ -203,7 +151,7 @@ public class ListaEncadeada<T> {
      */
     private No<T> buscaNo(int posicao) {
         No<T> noAtual = this.inicioNO;
-        if (!(posicao >= 0 && posicao <= this.tamanho)) {
+        if (this.posicaoNaoExiste(posicao)) {
             throw new IllegalArgumentException("Posição não existe.");
 
         }
@@ -262,6 +210,64 @@ public class ListaEncadeada<T> {
         /** Esta Constante devolve -1 */
         return this.NAO_ENCONTRADO;
 
+    }
+
+    private boolean posicaoNaoExiste(int posicao) {
+        return !(posicao >= 0 && posicao <= this.tamanho);
+    }
+
+
+
+     /***
+     * Estaremos fazendo uma modificação no ToString() para percorrer nossa lista
+     * como se fosse um Array
+     * [1,2,3,4....] e termos esta saida.
+     */
+    /**
+     * 1ª coisa é saber se a Lista esta Vazia, retornaremos um Array vazio [];
+     * 2º coisa é criar uma Variavel Atual que receba o Inicio,
+     * 3ª Se fosse Interá como se fosse um Array começariamos com o Zero;
+     * 4ª Adcionar o Atual no Builder antes de entrar no While e adcionar uma
+     * Virgula.
+     * 5ª dentro do While vamos mover o Atual p para o Proximo Elemento.
+     * 6º Movendo para proximo elemento, repetimos o Builder
+     * 7ª retornar a String.
+     * 
+     */
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        if (tamanho == 0) {
+            return builder.append("[]").toString();
+        }
+        No<T> atual = this.inicioNO;
+        builder.append("[");
+        builder.append(atual.getElemento()).append(" ,");
+        while (atual.getProximo() != null) {
+            atual = atual.getProximo();
+            builder.append(atual.getElemento()).append(" ,");
+        }
+        builder.deleteCharAt(builder.lastIndexOf(",")); /** removendo a ultima virgula */
+        builder.append("]");
+        return builder.toString();
+    }
+
+    /** Sobre escrevemos pois para mostrar como fazer com o FOR */
+
+    public String toStringComFor() {
+        StringBuilder builder = new StringBuilder();
+        if (tamanho == 0) {
+            return builder.append("[]").toString();
+        }
+        No<T> atual = this.inicioNO;
+        builder.append("[");
+        for (int i = 0; i < tamanho; i++) {
+            builder.append(atual.getElemento()).append(" ,");
+            atual = atual.getProximo();
+        }
+        builder.deleteCharAt(builder.lastIndexOf(",")); /** removendo a ultima virgula */
+        builder.append("]");
+        return builder.toString();
     }
 
 }
