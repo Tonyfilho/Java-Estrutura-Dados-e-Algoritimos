@@ -17,13 +17,15 @@ public class Exercicio03 {
         lista.adiciona(2);
         lista.adiciona(3); // nossa saida 1, 2, 4
         System.out.println("Lista Antes: " + lista);
-        lista.removeInicio();
+
+        System.out.println("*****************Começa a Remoção*************");
+       System.out.println("Removido Item: " + lista.removeInicio()); 
         System.out.println("Lista Depois do Remove: " + lista);
         /**Outra Vez */
-        lista.removeInicio();
+        System.out.println("Removido Item: " + lista.removeInicio()); 
         System.out.println("Lista Depois do Remove: " + lista);
         /**Ultima Vez */
-        lista.removeInicio();
+        System.out.println("Removido Item: " + lista.removeInicio()); 
         System.out.println("Lista Depois do Remove: " + lista);
 
     }

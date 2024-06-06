@@ -24,7 +24,7 @@ public class ListaEncadeada<T> {
      * 
      * 
      */
-    @SuppressWarnings({ "rawtypes", "unchecked"})
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public void adcionaNoInicio(T elemento) {
         if (this.tamanho == 0) {
             No<T> novoNo = new No(elemento);
@@ -32,7 +32,7 @@ public class ListaEncadeada<T> {
             this.ultimoNO = novoNo; // ultimo recebe o novo
         } else {
             No<T> novoNo = new No(elemento, this.inicioNO);
-           this.inicioNO = novoNo;
+            this.inicioNO = novoNo;
         }
         this.tamanho++;
     }
@@ -69,7 +69,8 @@ public class ListaEncadeada<T> {
      * 2ª Se a Lista esta Vazia ou tamanho == 0; ou Inicio é Null;
      * 3º Se a posição é o mesmo q tamanho , ou seja Adciona na Ultima, este nos ja
      * temos pronto.
-     * 4º Senão é o inicio ou no final é onde precisamos adcionar, e temos q buscar pela posição.
+     * 4º Senão é o inicio ou no final é onde precisamos adcionar, e temos q buscar
+     * pela posição.
      */
     public void adiciona(int posicao, T elemento) {
         if (this.posicaoNaoExiste(posicao)) {
@@ -80,11 +81,10 @@ public class ListaEncadeada<T> {
             this.adcionaNoInicio(elemento);
         } else if (posicao == this.tamanho) { /** Adcionar no Ultimo */
             this.adiciona(elemento);
-        }
-        else { //busca  aposição anterior para faazermos a ligação
+        } else { // busca aposição anterior para faazermos a ligação
 
-            No<T> noAnterior = this.buscaNo(posicao); /**Salvando a Referencia da posição atual */
-            No<T> proximoNo = noAnterior.getProximo(); /**Salvando a Referencia Depois da posição */
+            No<T> noAnterior = this.buscaNo(posicao); /** Salvando a Referencia da posição atual */
+            No<T> proximoNo = noAnterior.getProximo(); /** Salvando a Referencia Depois da posição */
             No<T> novoNo = new No<>(elemento, proximoNo);
             noAnterior.setProximo(novoNo);
             this.tamanho++;
@@ -93,21 +93,23 @@ public class ListaEncadeada<T> {
 
     }
 
-
-    /**Remove do inicio */
+    /** Remove do inicio */
     /**
-     * 1ª se tamanho for == 0, ja elelimina outra possibilidade dotipo tamanho negativo
+     * 1ª se tamanho for == 0, ja elelimina outra possibilidade dotipo tamanho
+     * negativo
      * 2º Retornaremos a Referencia do elemento removido.
      * 3º Diminir o tamanho.
-     * 4º È Si  o tamanho passou a ser  0, temos q remosver a ref. do ultimo.
-     * Obs: Não preciso por Inicio como Null. Pois se for Zero o tamanho , ele ja vai pegar o GetProximo(null);
+     * 4º È Si o tamanho passou a ser 0, temos q remosver a ref. do ultimo.
+     * Obs: Não preciso por Inicio como Null. Pois se for Zero o tamanho , ele ja
+     * vai pegar o GetProximo(null);
+     * 
      */
     public T removeInicio() {
-        if (this.tamanho == 0) {
+        if (tamanhoIqualZero()) {
             throw new RuntimeException("Lista esta Vazia");
         }
         T removido = this.inicioNO.getElemento();
-        this.inicioNO= this.inicioNO.getProximo();
+        this.inicioNO = this.inicioNO.getProximo();
         this.tamanho--;
         if (this.tamanho == 0) {
             this.ultimoNO = null;
@@ -116,14 +118,67 @@ public class ListaEncadeada<T> {
         return removido;
     }
 
+    /**
+     * Metodo Remove do Final, onde temos que pegar o tamanho -2 posições, lembrando
+     * q iniciamos no 0 as referencia e tamanho inicia no 1.
+     * 1º Tamanho igual a zero.
+     * 2º Tamanho igual a 1, ja temos o metodo q remove do inicio.
+     * 3º se passou as 2s primeiras etapas. temos que criar um Nó para salvar o
+     * penultimo.
+     * 4º Usaremos o Metodo de busca Nó, sendo tamanho -2. Obs: Mesmo que tenhamos
+     * apenas
+     * 2s elementos, as 2s primeiras validações garantira o uso do metodo.
+     * 5º Antes do Retorno temos que fazer a logica de apontamento das referencias.
+     * 6º Pegar o SetProximo e apontar para Null .
+     * 7º Atualizar o Ultimo, q recebe o penultimo
+     * 8º Diminuir o tamanho
+     * 
+     */
+    public T removeFinal() {
+        if (tamanhoIqualZero()) { // elementos
+            throw new RuntimeException("Lista esta Vazia");
+        }
+        if (tamanho == 1) {
+            return this.removeInicio(); // somente com 1
+        }
+        No<T> penultimoNo = this.buscaNo(this.tamanho - 2);
+        T removido = penultimoNo.getProximo().getElemento();
+        penultimoNo.setProximo(null); // ultimo apontamento
+        this.ultimoNO = penultimoNo;
+        tamanho--;
+
+        return removido;
+    }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
 
     public int getTamanho() {
         return this.tamanho;
     }
-
-   
 
     /** Limpa Lista, Há duas formas */
     /**
@@ -178,9 +233,9 @@ public class ListaEncadeada<T> {
     private No<T> buscaNo(int posicao) {
         if (this.posicaoNaoExiste(posicao)) {
             throw new IllegalArgumentException("Posição não existe.");
-            
+
         }
-        
+
         No<T> noAtual = this.inicioNO;
         for (int i = 0; i < posicao; i++) {
             noAtual = noAtual.getProximo();
@@ -242,9 +297,14 @@ public class ListaEncadeada<T> {
         return !(posicao >= 0 && posicao <= this.tamanho);
     }
 
+    private boolean tamanhoIqualZero() {
+        if (this.tamanho == 0) {
+            return true;
+        }
+        return false;
+    }
 
-
-     /***
+    /***
      * Estaremos fazendo uma modificação no ToString() para percorrer nossa lista
      * como se fosse um Array
      * [1,2,3,4....] e termos esta saida.
